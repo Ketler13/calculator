@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react'
 import Button from '../Button'
 
-const Backspace = ({label}) => {
-  const onClick = value  => ev => {
-    console.log(value)
+const Backspace = ({label, deleteLastSymbol, deleteResult}) => {
+  const onClick = ev => {
+    deleteLastSymbol()
   }
   return (
     <Button
       label = 'C'
-      onClick = {onClick('Backspace')}
+      onClick = {onClick}
       fullWidth = {true}
     />
   )

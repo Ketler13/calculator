@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react'
 import Button from '../Button'
 
-const Digit = ({label}) => {
+const Digit = ({label, setDigit}) => {
   const onClick = value  => ev => {
-    console.log(value)
+    setDigit(value)
   }
   return (
     <Button
       label = {label}
-      onClick = {onClick('digit')}
+      onClick = {onClick(label)}
     />
   )
 }

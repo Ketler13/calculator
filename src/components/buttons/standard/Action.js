@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react'
 import Button from '../Button'
 
-const Action = ({label}) => {
+const Action = ({label, setAction}) => {
   const onClick = value  => ev => {
-    console.log(value)
+    setAction(value)
   }
   return (
     <Button
       label = {label}
-      onClick = {onClick('action')}
+      onClick = {onClick(label)}
     />
   )
 }

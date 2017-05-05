@@ -3,7 +3,7 @@ import Button from '../Button'
 
 const Dot = ({label}) => {
   const onClick = value  => ev => {
-    console.log(value)
+    
   }
   return (
     <Button

@@ -1,33 +1,38 @@
 import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { setDigit, setAction, deleteLastSymbol, deleteResult } from '../AC'
 import Backspace from './buttons/standard/Backspace'
 import Digit from './buttons/standard/Digit'
 import Action from './buttons/standard/Action'
 import Dot from './buttons/standard/Dot'
 import Equal from './buttons/standard/Equal'
 
-const StandardKbd = (props) => {
+const StandardKbd = ({currentValue, setDigit, deleteLastSymbol, deleteResult}) => {
   const style = {
     width: '50%',
   }
   return (
     <div style = {style}>
-      <Backspace/>
-      <Digit label = '7'/>
-      <Digit label = '8'/>
-      <Digit label = '9'/>
-      <Action label = '/'/>
-      <Digit label = '4'/>
-      <Digit label = '5'/>
-      <Digit label = '6'/>
-      <Action label = '*'/>
-      <Digit label = '1'/>
-      <Digit label = '2'/>
-      <Digit label = '3'/>
-      <Action label = '-'/>
+      <Backspace
+        deleteLastSymbol = {deleteLastSymbol}
+        deleteResult = {deleteResult}
+      />
+      <Digit label = '7' setDigit = {setDigit}/>
+      <Digit label = '8' setDigit = {setDigit}/>
+      <Digit label = '9' setDigit = {setDigit}/>
+      <Action label = '/' setAction = {setAction}/>
+      <Digit label = '4' setDigit = {setDigit}/>
+      <Digit label = '5' setDigit = {setDigit}/>
+      <Digit label = '6' setDigit = {setDigit}/>
+      <Action label = '*' setAction = {setAction}/>
+      <Digit label = '1' setDigit = {setDigit}/>
+      <Digit label = '2' setDigit = {setDigit}/>
+      <Digit label = '3' setDigit = {setDigit}/>
+      <Action label = '-' setAction = {setAction}/>
       <Dot />
-      <Digit label = '0'/>
+      <Digit label = '0' setDigit = {setDigit}/>
       <Equal/>
-      <Action label = '+'/>
+      <Action label = '+' setAction = {setAction}/>
     </div>
   )
 }
@@ -36,4 +41,8 @@ StandardKbd.propTypes = {
 
 }
 
-export default StandardKbd
+export default connect(store => {
+  return {
+    currentValue: store.actions.currentValue,
+  }
+}, {setDigit, setAction, deleteLastSymbol, deleteResult})(StandardKbd)
