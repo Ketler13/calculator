@@ -5,6 +5,7 @@ const Digit = ({label, setDigit}) => {
   const onClick = value  => ev => {
     setDigit(value)
   }
+  
   return (
     <Button
       label = {label}

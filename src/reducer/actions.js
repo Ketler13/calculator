@@ -1,8 +1,11 @@
-import { SET_DIGIT, SET_ACTION, DELETE_LAST_SYMBOL, DELETE_RESULT } from '../constants'
+import {
+         SET_DIGIT, SET_ACTION, DELETE_LAST_SYMBOL, DELETE_RESULT, EQUAL
+       } from '../constants'
 
 const defaultState = {
-  currentValue: null,
-  expression: []
+  currentSymbol: null,
+  expression: [],
+  result: null
 }
 
 export default (state = defaultState, action) => {
@@ -12,18 +15,36 @@ export default (state = defaultState, action) => {
     case SET_DIGIT:
       return {
         ...state,
+        result: null,
         expression: state.expression.concat(payload.value),
-        currentValue: state.currentValue ? state.currentValue + payload.value : payload.value
+        currentSymbol: payload.value
       }
 
     case SET_ACTION:
       return {
         ...state,
-        expression: state.expression.concat(payload.value)
+        result: null,
+        expression: state.expression.concat(payload.value),
+        currentSymbol: payload.value
       }
 
     case DELETE_LAST_SYMBOL:
-      return state
+      return {
+        ...state,
+        expression: state.expression.slice(0, state.expression.length - 1)
+      }
+
+    case EQUAL + '_SUCCESS':
+      return {
+        ...defaultState,
+        result: action.result
+      }
+
+      case EQUAL + '_ERROR':
+        return {
+          ...defaultState,
+          result: action.result
+        }
   }
   return defaultState
 }

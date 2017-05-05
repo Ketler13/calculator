@@ -1,14 +1,11 @@
 import React, { PropTypes } from 'react'
 import Button from '../Button'
 
-const Equal = ({label}) => {
-  const onClick = value  => ev => {
-    console.log(value)
-  }
+const Equal = ({label, equal}) => {
   return (
     <Button
       label = '='
-      onClick = {onClick('equal')}
+      onClick = {equal}
     />
   )
 }

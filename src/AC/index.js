@@ -1,4 +1,6 @@
-import { SET_DIGIT, DELETE_LAST_SYMBOL, DELETE_RESULT, SET_ACTION } from '../constants'
+import {
+         SET_DIGIT, DELETE_LAST_SYMBOL, DELETE_RESULT, SET_ACTION, EQUAL
+       } from '../constants'
 
 export function setDigit(value) {
   return {
@@ -27,5 +29,11 @@ export function deleteLastSymbol() {
 export function deleteResult() {
   return {
     type: DELETE_RESULT
+  }
+}
+
+export function equal() {
+  return {
+    type: EQUAL
   }
 }

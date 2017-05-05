@@ -1,14 +1,16 @@
 import React, { PropTypes } from 'react'
 import Button from '../Button'
 
-const Action = ({label, setAction}) => {
+const Action = ({label, currentSymbol, setAction}) => {
   const onClick = value  => ev => {
-    setAction(value)
+    if (currentSymbol && !isNaN(+currentSymbol) || label === '-' && !currentSymbol) {
+      setAction(value)
+    }
   }
   return (
     <Button
       label = {label}
-      onClick = {onClick(label)}
+      onClick = {onClick(` ${label} `)}
     />
   )
 }
