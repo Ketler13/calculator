@@ -1,9 +1,12 @@
+import { collectDigitsAndDotsTogether } from '../helpers'
 import {
-         SET_DIGIT, SET_ACTION, DELETE_LAST_SYMBOL, DELETE_RESULT, EQUAL, SET_DOT
+         SET_DIGIT, SET_ACTION, DELETE_LAST_SYMBOL, DELETE_RESULT, EQUAL,
+         SET_DOT, SET_FUNC
        } from '../constants'
 
 const defaultState = {
   currentSymbol: null,
+  currentType: null,
   latestNumberContainsDot: false,
   expression: [],
   result: null
@@ -17,7 +20,12 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         result: null,
-        expression: state.expression.concat(payload.value),
+        currentType: payload.type,
+        expression: (
+          state.currentType === 'digit' ?
+          collectDigitsAndDotsTogether(state.expression, payload.value) :
+          state.expression.concat(payload.value)
+        ),
         currentSymbol: payload.value
       }
 
@@ -25,6 +33,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         result: null,
+        currentType: payload.type,
         latestNumberContainsDot: false,
         expression: state.expression.concat(payload.value),
         currentSymbol: payload.value
@@ -33,10 +42,19 @@ export default (state = defaultState, action) => {
     case SET_DOT:
       return {
         ...state,
+        currentType: payload.type,
         latestNumberContainsDot: true,
-        expression: state.expression.concat(payload.value),
+        expression: (
+          state.currentType === 'digit' ?
+          collectDigitsAndDotsTogether(state.expression, payload.value) :
+          state.expression.concat(payload.value)
+        ),
         currentSymbol: '.'
       }
+
+    case SET_FUNC:
+    console.log(state.expression);
+      return state
 
     case DELETE_LAST_SYMBOL:
       return {
