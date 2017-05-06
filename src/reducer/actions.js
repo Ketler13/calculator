@@ -1,4 +1,4 @@
-import { collectDigitsAndDotsTogether } from '../helpers'
+import { collectDigitsAndDotsTogether, addFuncToLatestValue } from '../helpers'
 import {
          SET_DIGIT, SET_ACTION, DELETE_LAST_SYMBOL, DELETE_RESULT, EQUAL,
          SET_DOT, SET_FUNC
@@ -53,8 +53,10 @@ export default (state = defaultState, action) => {
       }
 
     case SET_FUNC:
-    console.log(state.expression);
-      return state
+      return {
+        ...state,
+        expression: addFuncToLatestValue(state.expression, payload.func),
+      }
 
     case DELETE_LAST_SYMBOL:
       return {
