@@ -7,7 +7,7 @@ const Dot = ({label, currentSymbol, setDot, latestNumberContainsDot}) => {
       if (currentSymbol === null || isNaN(+currentSymbol)) {
         setDot('0.')
       } else {
-        setDot()
+        setDot('.')
       }
     }
   }

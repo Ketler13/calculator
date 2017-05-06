@@ -12,6 +12,7 @@ const Keyboard = (props) => {
   }
   return (
     <div style = {style}>
+      <ExtendedKbd />
       <StandardKbd />
     </div>
   )
