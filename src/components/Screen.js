@@ -12,7 +12,7 @@ const Screen = ({expression, result}) => {
     textAlign: 'right',
     overflowX: 'hidden',
   }
-  
+
   const screenValue = (result !== null) ? result : expression.join('')
   return (
     <div style = {style}>

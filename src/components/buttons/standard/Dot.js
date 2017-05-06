@@ -1,14 +1,20 @@
 import React, { PropTypes } from 'react'
 import Button from '../Button'
 
-const Dot = ({label}) => {
-  const onClick = value  => ev => {
-    
+const Dot = ({label, currentSymbol, setDot, latestNumberContainsDot}) => {
+  const onClick = ev => {
+    if (!latestNumberContainsDot) {
+      if (currentSymbol === null || isNaN(+currentSymbol)) {
+        setDot('0.')
+      } else {
+        setDot()
+      }
+    }
   }
   return (
     <Button
       label = '.'
-      onClick = {onClick('dot')}
+      onClick = {onClick}
     />
   )
 }

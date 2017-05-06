@@ -1,14 +1,17 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { setDigit, setAction, deleteLastSymbol, deleteResult, equal } from '../AC'
+import { setDigit, setAction, setDot, deleteLastSymbol, deleteResult,
+         equal
+       } from '../AC'
 import Backspace from './buttons/standard/Backspace'
 import Digit from './buttons/standard/Digit'
 import Action from './buttons/standard/Action'
 import Dot from './buttons/standard/Dot'
 import Equal from './buttons/standard/Equal'
 
-const StandardKbd = ({currentSymbol, setDigit, setAction, deleteLastSymbol,
-                      deleteResult, equal                                }) => {
+const StandardKbd = ({currentSymbol, setDigit, setDot, setAction,
+                      deleteLastSymbol, deleteResult, equal, result,
+                      latestNumberContainsDot                            }) => {
   const style = {
     width: '50%',
   }
@@ -16,7 +19,9 @@ const StandardKbd = ({currentSymbol, setDigit, setAction, deleteLastSymbol,
   return (
     <div style = {style}>
       <Backspace
+        result = {result}
         deleteLastSymbol = {deleteLastSymbol}
+        deleteResult = {deleteResult}
         deleteResult = {deleteResult}
       />
       <Digit label = '7' setDigit = {setDigit}/>
@@ -31,7 +36,11 @@ const StandardKbd = ({currentSymbol, setDigit, setAction, deleteLastSymbol,
       <Digit label = '2' setDigit = {setDigit}/>
       <Digit label = '3' setDigit = {setDigit}/>
       <Action label = '-' currentSymbol = {currentSymbol} setAction = {setAction}/>
-      <Dot />
+      <Dot
+        currentSymbol = {currentSymbol}
+        latestNumberContainsDot = {latestNumberContainsDot}
+        setDot = {setDot}
+      />
       <Digit label = '0' setDigit = {setDigit}/>
       <Equal equal = {equal}/>
       <Action label = '+' currentSymbol = {currentSymbol} setAction = {setAction}/>
@@ -44,7 +53,8 @@ StandardKbd.propTypes = {
 }
 
 export default connect(store => {
+  const { currentSymbol, result, latestNumberContainsDot } = store.actions
   return {
-    currentSymbol: store.actions.currentSymbol,
+    currentSymbol, result, latestNumberContainsDot
   }
-}, {setDigit, setAction, deleteLastSymbol, deleteResult, equal})(StandardKbd)
+}, {setDigit, setAction, setDot, deleteLastSymbol, deleteResult, equal})(StandardKbd)

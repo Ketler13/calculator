@@ -7,6 +7,6 @@ export default store => next => action => {
     const result = eval(expression)
     next({...action, type: action.type + '_SUCCESS', result})
   } catch (error) {
-    next({...action, type: action.type + '_ERROR', result: error})
+    next({...action, type: action.type + '_ERROR', result: error.toString()})
   }
 }
