@@ -14,6 +14,7 @@ const StandardKbd = ({currentSymbol, setDigit, setDot, setAction,
                       latestNumberContainsDot                            }) => {
   const style = {
     width: '50%',
+    minWidth: '250px',
   }
 
   return (

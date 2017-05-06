@@ -1,12 +1,14 @@
 import {
-         SET_DIGIT, SET_ACTION, SET_DOT, DELETE_LAST_SYMBOL, DELETE_RESULT,  EQUAL
+         SET_DIGIT, SET_ACTION, SET_DOT, DELETE_LAST_SYMBOL, DELETE_RESULT,
+         EQUAL, SET_FUNC
        } from '../constants'
 
 export function setDigit(value) {
   return {
     type: SET_DIGIT,
     payload: {
-      value
+      value,
+      type: 'digit'
     }
   }
 }
@@ -15,7 +17,8 @@ export function setAction(value) {
   return {
     type: SET_ACTION,
     payload: {
-      value
+      value,
+      type: 'action'
     }
   }
 }
@@ -24,7 +27,17 @@ export function setDot(value) {
   return {
     type: SET_DOT,
     payload: {
-      value
+      value,
+      type: 'digit'
+    }
+  }
+}
+
+export function setFunc(func) {
+  return {
+    type: SET_FUNC,
+    payload: {
+      func
     }
   }
 }

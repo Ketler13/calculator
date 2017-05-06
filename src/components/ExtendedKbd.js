@@ -1,38 +1,62 @@
-import React, { PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import {setFunc} from '../AC'
 import Func from './buttons/extended/Func'
 import Checkbox from './buttons/extended/Checkbox'
 import BracketOpen from './buttons/extended/BracketOpen'
 import BracketClose from './buttons/extended/BracketClose'
+import Pi from './buttons/extended/Pi'
 
-const ExtendedKbd = (props) => {
-  const style = {
-    width: '50%',
+class ExtendedKbd extends Component  {
+  static propTypes = {
+
   }
-  return (
-    <div style = {style}>
-      <Checkbox />
-      <Func label = 'sin x' />
-      <Func label = 'cos x' />
-      <Func label = 'tan x' />
-      <Func label = 'ctg x' />
-      <Func label = {'\u221A'} />
-      <Func label = '1/x' />
-      <Func label = 'log' />
-      <Func label = 'ln' />
-      <Func label = {'x\xB2'} />
-      <Func label = {'x\xB3'} />
-      <Func label = {'x\u207F'} />
-      <Func label = {'10\u207F'} />
-      <Func label = 'n!' />
-      <Func label = {'\u03C0'} />
-      <BracketOpen />
-      <BracketClose />
-    </div>
-  )
+
+  static childContextTypes = {
+    currentSymbol: PropTypes.string,
+    setFunc: PropTypes.func
+  }
+
+  getChildContext() {
+    return {
+      currentSymbol: this.props.currentSymbol,
+      setFunc: this.props.setFunc
+    }
+  }
+
+  render() {
+    const style = {
+      width: '50%',
+      minWidth: '250px',
+    }
+    return (
+      <div style = {style}>
+        <Checkbox />
+        <Func label = 'sin' funcType = 'sin'/>
+        <Func label = 'cos' funcType = 'cos'/>
+        <Func label = 'tan' funcType = 'tan'/>
+        <Func label = 'ctg' funcType = 'tan'/>
+        <Func label = {'\u221A'} funcType = 'sqrt'/>
+        <Func label = '1/x' funcType = 'revDiv'/>
+        <Func label = 'log' funcType = 'log'/>
+        <Func label = 'ln' funcType = 'ln'/>
+        <Func label = {'x\xB2'} funcType = 'sqr'/>
+        <Func label = {'x\xB3'} funcType = 'cube'/>
+        <Func label = {'x\u207F'} funcType = 'pow'/>
+        <Func label = {'10\u207F'} funcType = 'tenPow'/>
+        <Func label = 'n!' funcType = 'factorial'/>
+        <Pi />
+        <BracketOpen />
+        <BracketClose />
+      </div>
+    )
+  }
 }
 
-ExtendedKbd.propTypes = {
 
-}
-
-export default ExtendedKbd
+export default connect(store => {
+  return {
+    currentSymbol: store.actions.currentSymbol
+  }
+}, {setFunc})(ExtendedKbd)
