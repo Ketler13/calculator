@@ -36,18 +36,34 @@ export const changeSignOfLastValue = array => {
   })
 }
 
+const degToRad = deg => {
+  return deg * Math.PI / 180;
+}
+
 export const functions = {
   sin(x) {
     return Math.sin(x)
   },
+  sind(x) {
+    return Math.sin(degToRad(x))
+  },
   cos(x) {
     return Math.cos(x)
+  },
+  cosd(x) {
+    return Math.cos(degToRad(x))
   },
   tan(x) {
     return Math.tan(x)
   },
+  tand(x) {
+    return Math.tan(degToRad(x))
+  },
   ctg(x) {
     return Math.cos(x) / Math.sin(x)
+  },
+  ctgd(x) {
+    return Math.cos(degToRad(x)) / Math.sin(degToRad(x))
   },
   sqrt(x) {
     return Math.sqrt(x)

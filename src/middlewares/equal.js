@@ -2,7 +2,10 @@ import {EQUAL, CALCULATE_FUNC} from '../constants'
 import { fact, functions } from '../helpers'
 
 export default store => next => action => {
-  const { sin, cos, tan, ctg, sqrt, revDiv, log, ln, cube, sqr, pow, tenPow } = functions
+  const {
+         sin, sind, cos, cosd, tan, tand, ctg, ctgd, sqrt, revDiv, log, ln,
+         cube, sqr, pow, tenPow
+        } = functions
   const factorial = fact
   if (action.type !== EQUAL && action.type !== CALCULATE_FUNC) return next(action)
   if (action.type === EQUAL) {

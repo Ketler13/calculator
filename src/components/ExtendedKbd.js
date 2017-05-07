@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setFunc, calculateFunc, changeSign, changeTrigonometricScale} from '../AC'
+import {
+         setFunc, calculateFunc, changeSign, changeTrigonometricScale, setDigit
+       } from '../AC'
 import Func from './buttons/extended/Func'
 import Trigonometric from './buttons/extended/Trigonometric'
 import Checkbox from './buttons/extended/Checkbox'
@@ -37,7 +39,8 @@ class ExtendedKbd extends Component  {
       minWidth: '250px',
     }
     const {
-           changeSign, currentSymbol, trigonometricScale, changeTrigonometricScale
+           changeSign, currentSymbol, trigonometricScale, setDigit,
+           changeTrigonometricScale
           } = this.props
 
     return (
@@ -46,7 +49,7 @@ class ExtendedKbd extends Component  {
         <Trigonometric label = 'sin' funcType = 'sin' scale = {trigonometricScale}/>
         <Trigonometric label = 'cos' funcType = 'cos' scale = {trigonometricScale}/>
         <Trigonometric label = 'tan' funcType = 'tan' scale = {trigonometricScale}/>
-        <Trigonometric label = 'ctg' funcType = 'tan' scale = {trigonometricScale}/>
+        <Trigonometric label = 'ctg' funcType = 'ctg' scale = {trigonometricScale}/>
         <Func label = {'\u221A'} funcType = 'sqrt'/>
         <Func label = '1/x' funcType = 'revDiv'/>
         <Func label = 'log' funcType = 'log'/>
@@ -56,7 +59,7 @@ class ExtendedKbd extends Component  {
         <Func label = {'10\u207F'} funcType = 'tenPow'/>
         <PlusMinus changeSign = {changeSign} currentSymbol = {currentSymbol}/>
         <Func label = 'n!' funcType = 'factorial'/>
-        <Pi />
+        <Pi setPi = {setDigit}/>
         <BracketOpen />
         <BracketClose />
       </div>
@@ -70,4 +73,4 @@ export default connect(store => {
   return {
     currentSymbol, expression, trigonometricScale
   }
-}, {setFunc, calculateFunc, changeSign, changeTrigonometricScale})(ExtendedKbd)
+}, {setFunc, calculateFunc, changeSign, changeTrigonometricScale, setDigit})(ExtendedKbd)
