@@ -1,16 +1,17 @@
 import {
          collectDigitsAndDotsTogether, addFuncToLatestValue,
-         changeSignOfLastValue
+         changeSignOfLastValue, deleteLastSymbol
         } from '../helpers'
 import {
          SET_DIGIT, SET_ACTION, DELETE_LAST_SYMBOL, DELETE_RESULT, EQUAL,
-         SET_DOT, SET_FUNC, CHANGE_SIGN
+         SET_DOT, SET_FUNC, CHANGE_SIGN, CHANGE_TRIGONOMETRIC_SCALE
        } from '../constants'
 
 const defaultState = {
   currentSymbol: null,
   currentType: null,
   latestNumberContainsDot: false,
+  trigonometricScale: 'deg',
   expression: [],
   result: null
 }
@@ -22,7 +23,6 @@ export default (state = defaultState, action) => {
     case SET_DIGIT:
       return {
         ...state,
-        result: null,
         currentType: payload.type,
         expression: (
           state.currentType === 'digit' ?
@@ -67,10 +67,16 @@ export default (state = defaultState, action) => {
         expression: changeSignOfLastValue(state.expression)
       }
 
+    case CHANGE_TRIGONOMETRIC_SCALE:
+      return {
+        ...state,
+        trigonometricScale: payload.value
+      }
+
     case DELETE_LAST_SYMBOL:
       return {
         ...state,
-        expression: state.expression.slice(0, state.expression.length - 1)
+        expression: deleteLastSymbol(state.expression)
       }
 
     case DELETE_RESULT:
@@ -88,7 +94,8 @@ export default (state = defaultState, action) => {
       case EQUAL + '_ERROR':
         return {
           ...defaultState,
-          result: action.result
+          result: action.result,
+          expression: [`${action.result}`]
         }
   }
   return defaultState

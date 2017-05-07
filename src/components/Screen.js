@@ -13,7 +13,7 @@ const Screen = ({expression, result}) => {
     overflowX: 'hidden',
   }
 
-  const screenValue = (result !== null) ? result : expression.join('')
+  const screenValue = expression.join('')
   return (
     <div style = {style}>
       <p>{screenValue}</p>

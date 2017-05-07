@@ -11,7 +11,7 @@ import Equal from './buttons/standard/Equal'
 
 const StandardKbd = ({currentSymbol, setDigit, setDot, setAction,
                       deleteLastSymbol, deleteResult, equal, result,
-                      latestNumberContainsDot                            }) => {
+                      latestNumberContainsDot , expression               }) => {
   const style = {
     width: '50%',
     minWidth: '250px',
@@ -21,6 +21,7 @@ const StandardKbd = ({currentSymbol, setDigit, setDot, setAction,
     <div style = {style}>
       <Backspace
         result = {result}
+        expression = {expression}
         deleteLastSymbol = {deleteLastSymbol}
         deleteResult = {deleteResult}
         deleteResult = {deleteResult}
@@ -54,8 +55,8 @@ StandardKbd.propTypes = {
 }
 
 export default connect(store => {
-  const { currentSymbol, result, latestNumberContainsDot } = store.actions
+  const { currentSymbol, result, latestNumberContainsDot, expression } = store.actions
   return {
-    currentSymbol, result, latestNumberContainsDot
+    currentSymbol, result, latestNumberContainsDot, expression
   }
 }, {setDigit, setAction, setDot, deleteLastSymbol, deleteResult, equal})(StandardKbd)

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setFunc, calculateFunc, changeSign} from '../AC'
+import {setFunc, calculateFunc, changeSign, changeTrigonometricScale} from '../AC'
 import Func from './buttons/extended/Func'
+import Trigonometric from './buttons/extended/Trigonometric'
 import Checkbox from './buttons/extended/Checkbox'
 import BracketOpen from './buttons/extended/BracketOpen'
 import BracketClose from './buttons/extended/BracketClose'
@@ -35,14 +36,17 @@ class ExtendedKbd extends Component  {
       width: '50%',
       minWidth: '250px',
     }
-    const {changeSign, currentSymbol} = this.props
+    const {
+           changeSign, currentSymbol, trigonometricScale, changeTrigonometricScale
+          } = this.props
+
     return (
       <div style = {style}>
-        <Checkbox />
-        <Func label = 'sin' funcType = 'sin'/>
-        <Func label = 'cos' funcType = 'cos'/>
-        <Func label = 'tan' funcType = 'tan'/>
-        <Func label = 'ctg' funcType = 'tan'/>
+        <Checkbox changeScale = {changeTrigonometricScale}/>
+        <Trigonometric label = 'sin' funcType = 'sin' scale = {trigonometricScale}/>
+        <Trigonometric label = 'cos' funcType = 'cos' scale = {trigonometricScale}/>
+        <Trigonometric label = 'tan' funcType = 'tan' scale = {trigonometricScale}/>
+        <Trigonometric label = 'ctg' funcType = 'tan' scale = {trigonometricScale}/>
         <Func label = {'\u221A'} funcType = 'sqrt'/>
         <Func label = '1/x' funcType = 'revDiv'/>
         <Func label = 'log' funcType = 'log'/>
@@ -62,8 +66,8 @@ class ExtendedKbd extends Component  {
 
 
 export default connect(store => {
+  const {currentSymbol, expression, trigonometricScale} = store.actions
   return {
-    currentSymbol: store.actions.currentSymbol,
-    expression: store.actions.expression
+    currentSymbol, expression, trigonometricScale
   }
-}, {setFunc, calculateFunc, changeSign})(ExtendedKbd)
+}, {setFunc, calculateFunc, changeSign, changeTrigonometricScale})(ExtendedKbd)

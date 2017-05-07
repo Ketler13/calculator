@@ -5,6 +5,19 @@ export const collectDigitsAndDotsTogether = (array, addition) => {
   })
 }
 
+export const deleteLastSymbol = array => {
+  const proxy = array.filter((elem, i, arr) => {
+    if (i !== (arr.length - 1)) return elem
+    if (elem.length === 1) return false
+    return elem
+  })
+  return proxy.map((elem, i, arr) => {
+    if (i !== (arr.length - 1)) return elem
+    if (elem.length > 1) return elem.slice(0, elem.length - 1)
+    return elem
+  })
+}
+
 export const addFuncToLatestValue = (array, func) => {
   return array.map((elem, i, arr) => {
     if (i !== (arr.length - 1)) return elem

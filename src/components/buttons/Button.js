@@ -16,6 +16,7 @@ const Button = ({label, onClick, ...rest}) => {
       style = {style}
       buttonStyle = {buttonStyle}
       label = {label}
+      disabled = {rest.disabled}
       onTouchTap = {onClick}
     />
   )

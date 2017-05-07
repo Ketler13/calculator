@@ -1,6 +1,6 @@
 import {
          SET_DIGIT, SET_ACTION, SET_DOT, DELETE_LAST_SYMBOL, DELETE_RESULT,
-         EQUAL, SET_FUNC, CALCULATE_FUNC, CHANGE_SIGN
+         EQUAL, SET_FUNC, CALCULATE_FUNC, CHANGE_SIGN, CHANGE_TRIGONOMETRIC_SCALE
        } from '../constants'
 
 export function setDigit(value) {
@@ -36,6 +36,15 @@ export function setDot(value) {
 export function changeSign() {
   return {
     type: CHANGE_SIGN
+  }
+}
+
+export function changeTrigonometricScale(value) {
+  return {
+    type: CHANGE_TRIGONOMETRIC_SCALE,
+    payload: {
+      value
+    }
   }
 }
 

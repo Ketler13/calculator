@@ -3,14 +3,7 @@ import Button from '../Button'
 import Paper from 'material-ui/Paper'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
 
-const Checkbox = ({label, result, deleteLastSymbol, deleteResult}) => {
-  const onClick = ev => {
-    if (result || result !== null) {
-      deleteResult()
-    } else {
-      deleteLastSymbol()
-    }
-  }
+const Checkbox = ({changeScale}) => {
   const style = {
     container: {
       width: '100%',
@@ -28,9 +21,19 @@ const Checkbox = ({label, result, deleteLastSymbol, deleteResult}) => {
       display: 'inline-block',
     },
   }
+
+  const onChange = (ev, value) => {
+    changeScale(value);
+  }
+
   return (
     <Paper style = {style.container} zDepth={1}>
-      <RadioButtonGroup style = {style.radioButtonGroup} name="scale" defaultSelected="deg">
+      <RadioButtonGroup
+        style = {style.radioButtonGroup}
+        name="scale"
+        defaultSelected="deg"
+        onChange = {onChange}
+      >
         <RadioButton
           style = {style.radioButton}
           value="deg"
