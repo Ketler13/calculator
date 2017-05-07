@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setFunc} from '../AC'
+import {setFunc, calculateFunc} from '../AC'
 import Func from './buttons/extended/Func'
 import Checkbox from './buttons/extended/Checkbox'
 import BracketOpen from './buttons/extended/BracketOpen'
@@ -15,13 +15,17 @@ class ExtendedKbd extends Component  {
 
   static childContextTypes = {
     currentSymbol: PropTypes.string,
-    setFunc: PropTypes.func
+    expression: PropTypes.array,
+    setFunc: PropTypes.func,
+    calculateFunc: PropTypes.func
   }
 
   getChildContext() {
     return {
       currentSymbol: this.props.currentSymbol,
-      setFunc: this.props.setFunc
+      expression: this.props.expression,
+      setFunc: this.props.setFunc,
+      calculateFunc: this.props.calculateFunc
     }
   }
 
@@ -57,6 +61,7 @@ class ExtendedKbd extends Component  {
 
 export default connect(store => {
   return {
-    currentSymbol: store.actions.currentSymbol
+    currentSymbol: store.actions.currentSymbol,
+    expression: store.actions.expression
   }
-}, {setFunc})(ExtendedKbd)
+}, {setFunc, calculateFunc})(ExtendedKbd)

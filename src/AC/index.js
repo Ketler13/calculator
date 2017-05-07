@@ -1,6 +1,6 @@
 import {
          SET_DIGIT, SET_ACTION, SET_DOT, DELETE_LAST_SYMBOL, DELETE_RESULT,
-         EQUAL, SET_FUNC
+         EQUAL, SET_FUNC, CALCULATE_FUNC
        } from '../constants'
 
 export function setDigit(value) {
@@ -38,6 +38,15 @@ export function setFunc(func) {
     type: SET_FUNC,
     payload: {
       func
+    }
+  }
+}
+
+export function calculateFunc(func, value) {
+  return {
+    type: CALCULATE_FUNC,
+    payload: {
+      func, value
     }
   }
 }

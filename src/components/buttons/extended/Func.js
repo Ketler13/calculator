@@ -2,10 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button'
 
-const Func = ({label, funcType}, {currentSymbol, setFunc}) => {
-  const onClick = value  => ev => {
+const Func = ({label, funcType}, {currentSymbol, expression, setFunc, calculateFunc}) => {
+  const onClick = funcType  => ev => {
     if (currentSymbol && !isNaN(+currentSymbol)) {
-      setFunc(value)
+      if (expression.length === 1) {
+        calculateFunc(funcType, expression)
+      } else {
+        setFunc(funcType)
+      }
     }
   }
   return (
@@ -22,7 +26,9 @@ Func.propTypes = {
 
 Func.contextTypes = {
     currentSymbol: PropTypes.string,
-    setFunc: PropTypes.func
+    expression: PropTypes.array,
+    setFunc: PropTypes.func,
+    calculateFunc: PropTypes.func
 }
 
 export default Func
