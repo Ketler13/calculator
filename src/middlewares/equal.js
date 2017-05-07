@@ -18,7 +18,6 @@ export default store => next => action => {
     try {
       const {func, value} = action.payload
       const result = eval(`${func}(${value})`)
-      console.log(result);
       next({...action, type: EQUAL + '_SUCCESS', result})
     } catch (error) {
       next({...action, type: EQUAL + '_ERROR', result: error.toString()})

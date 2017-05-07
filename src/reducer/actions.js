@@ -15,8 +15,6 @@ const defaultState = {
 export default (state = defaultState, action) => {
   const { type, payload } = action
 
-  console.log(state.expression);
-
   switch (type) {
     case SET_DIGIT:
       return {
@@ -72,6 +70,9 @@ export default (state = defaultState, action) => {
     case EQUAL + '_SUCCESS':
       return {
         ...defaultState,
+        currentType: 'digit',
+        currentSymbol: `${action.result}`,
+        expression: [`${action.result}`],
         result: action.result
       }
 
