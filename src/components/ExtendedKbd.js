@@ -26,11 +26,9 @@ class ExtendedKbd extends Component  {
   }
 
   getChildContext() {
+    const {currentSymbol, expression, setFunc, calculateFunc} = this.props
     return {
-      currentSymbol: this.props.currentSymbol,
-      expression: this.props.expression,
-      setFunc: this.props.setFunc,
-      calculateFunc: this.props.calculateFunc
+      currentSymbol, expression, setFunc, calculateFunc
     }
   }
 

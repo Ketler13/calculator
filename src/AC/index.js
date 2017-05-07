@@ -1,7 +1,7 @@
 import {
          SET_DIGIT, SET_ACTION, SET_DOT, DELETE_LAST_SYMBOL, DELETE_RESULT,
          EQUAL, SET_FUNC, CALCULATE_FUNC, CHANGE_SIGN, CHANGE_TRIGONOMETRIC_SCALE,
-         OPEN_BRACKET, CLOSE_BRACKET, SET_BRACKET
+         OPEN_BRACKET, CLOSE_BRACKET, SET_BRACKET, ADD_KEY_HANDLER
        } from '../constants'
 
 export function setDigit(value) {
@@ -103,5 +103,11 @@ export function deleteResult() {
 export function equal() {
   return {
     type: EQUAL
+  }
+}
+
+export function addKeyHandler() {
+  return {
+    type: ADD_KEY_HANDLER
   }
 }

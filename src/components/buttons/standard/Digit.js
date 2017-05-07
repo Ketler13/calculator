@@ -1,21 +1,37 @@
-import React, { PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Button from '../Button'
 
-const Digit = ({label, setDigit}) => {
-  const onClick = value  => ev => {
-    setDigit(value)
+class Digit extends Component {
+  static propTypes = {
+
   }
-  
-  return (
-    <Button
-      label = {label}
-      onClick = {onClick(label)}
-    />
-  )
+
+  static contextTypes = {
+    keyPressed: PropTypes.string
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    if (nextContext.keyPressed === this.props.label) {
+      nextProps.setDigit(this.props.label)
+    }
+  }
+
+  onClick = value  => ev => {
+    this.props.setDigit(value)
+  }
+
+  render() {
+    const {label, setDigit} = this.props
+
+    return (
+      <Button
+        label = {label}
+        onClick = {this.onClick(label)}
+      />
+    )
+  }
 }
 
-Digit.propTypes = {
-
-}
 
 export default Digit

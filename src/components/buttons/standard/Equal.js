@@ -1,17 +1,30 @@
-import React, { PropTypes } from 'react'
+import React, { Component} from 'react'
+import PropTypes from 'prop-types'
 import Button from '../Button'
 
-const Equal = ({label, equal}) => {
-  return (
-    <Button
-      label = '='
-      onClick = {equal}
-    />
-  )
-}
+class Equal extends Component {
+  static propTypes = {
 
-Equal.propTypes = {
+  }
 
+  static contextTypes = {
+    keyPressed: PropTypes.string
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    if (nextContext.keyPressed === '=' || nextContext.keyPressed === 'Enter') {
+      nextProps.equal()
+    }
+  }
+
+  render() {
+    return (
+      <Button
+        label = '='
+        onClick = {this.props.equal}
+      />
+    )
+  }
 }
 
 export default Equal
