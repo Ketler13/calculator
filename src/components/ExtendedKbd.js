@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {
-         setFunc, calculateFunc, changeSign, changeTrigonometricScale, setDigit
+         setFunc, calculateFunc, changeSign, changeTrigonometricScale, setDigit,
+         setBracket
        } from '../AC'
 import Func from './buttons/extended/Func'
 import Trigonometric from './buttons/extended/Trigonometric'
 import Checkbox from './buttons/extended/Checkbox'
-import BracketOpen from './buttons/extended/BracketOpen'
+import Bracket from './buttons/extended/Bracket'
 import BracketClose from './buttons/extended/BracketClose'
 import Pi from './buttons/extended/Pi'
 import PlusMinus from './buttons/extended/PlusMinus'
@@ -40,7 +41,7 @@ class ExtendedKbd extends Component  {
     }
     const {
            changeSign, currentSymbol, trigonometricScale, setDigit,
-           changeTrigonometricScale
+           changeTrigonometricScale, setBracket
           } = this.props
 
     return (
@@ -60,8 +61,8 @@ class ExtendedKbd extends Component  {
         <PlusMinus changeSign = {changeSign} currentSymbol = {currentSymbol}/>
         <Func label = 'n!' funcType = 'factorial'/>
         <Pi setPi = {setDigit}/>
-        <BracketOpen />
-        <BracketClose />
+        <Bracket label = '(' setBracket = {setBracket}/>
+        <Bracket label = ')' setBracket = {setBracket}/>
       </div>
     )
   }
@@ -73,4 +74,8 @@ export default connect(store => {
   return {
     currentSymbol, expression, trigonometricScale
   }
-}, {setFunc, calculateFunc, changeSign, changeTrigonometricScale, setDigit})(ExtendedKbd)
+},
+{
+  setFunc, calculateFunc, changeSign, changeTrigonometricScale, setDigit,
+  setBracket
+})(ExtendedKbd)

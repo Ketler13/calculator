@@ -3,6 +3,10 @@ export const SET_ACTION = 'SET_ACTION'
 export const SET_DOT = 'SET_DOT'
 export const SET_FUNC = 'SET_FUNC'
 
+export const OPEN_BRACKET = 'OPEN_BRACKET'
+export const CLOSE_BRACKET = 'CLOSE_BRACKET'
+export const SET_BRACKET = 'SET_BRACKET'
+
 export const CHANGE_SIGN = 'CHANGE_SIGN'
 export const CHANGE_TRIGONOMETRIC_SCALE = 'CHANGE_TRIGONOMETRIC_SCALE'
 

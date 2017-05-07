@@ -1,6 +1,7 @@
 import {
          SET_DIGIT, SET_ACTION, SET_DOT, DELETE_LAST_SYMBOL, DELETE_RESULT,
-         EQUAL, SET_FUNC, CALCULATE_FUNC, CHANGE_SIGN, CHANGE_TRIGONOMETRIC_SCALE
+         EQUAL, SET_FUNC, CALCULATE_FUNC, CHANGE_SIGN, CHANGE_TRIGONOMETRIC_SCALE,
+         OPEN_BRACKET, CLOSE_BRACKET, SET_BRACKET
        } from '../constants'
 
 export function setDigit(value) {
@@ -29,6 +30,27 @@ export function setDot(value) {
     payload: {
       value,
       type: 'digit'
+    }
+  }
+}
+
+export function openBracket() {
+  return {
+    type: OPEN_BRACKET
+  }
+}
+
+export function closeBracket() {
+  return {
+    type: CLOSE_BRACKET
+  }
+}
+
+export function setBracket(bracket) {
+  return {
+    type: SET_BRACKET,
+    payload: {
+      bracket
     }
   }
 }

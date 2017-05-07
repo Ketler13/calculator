@@ -4,7 +4,7 @@ import {
         } from '../helpers'
 import {
          SET_DIGIT, SET_ACTION, DELETE_LAST_SYMBOL, DELETE_RESULT, EQUAL,
-         SET_DOT, SET_FUNC, CHANGE_SIGN, CHANGE_TRIGONOMETRIC_SCALE
+         SET_DOT, SET_FUNC, CHANGE_SIGN, CHANGE_TRIGONOMETRIC_SCALE, SET_BRACKET
        } from '../constants'
 
 const defaultState = {
@@ -53,6 +53,12 @@ export default (state = defaultState, action) => {
           state.expression.concat(payload.value)
         ),
         currentSymbol: '.'
+      }
+
+    case SET_BRACKET:
+      return {
+        ...state,
+        expression: state.expression.concat(payload.bracket)
       }
 
     case SET_FUNC:
