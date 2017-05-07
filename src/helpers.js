@@ -12,6 +12,17 @@ export const addFuncToLatestValue = (array, func) => {
   })
 }
 
+export const changeSignOfLastValue = array => {
+  return array.map((elem, i, arr) => {
+    if (i !== (arr.length - 1)) return elem
+    if (elem.includes('-')) {
+      return elem.slice(1)
+    } else {
+      return `-${elem}`
+    }
+  })
+}
+
 export const functions = {
   sin(x) {
     return Math.sin(x)

@@ -3,7 +3,7 @@ import Button from '../Button'
 
 const Action = ({label, currentSymbol, setAction}) => {
   const onClick = value  => ev => {
-    if (currentSymbol && !isNaN(+currentSymbol) || label === '-' && !currentSymbol) {
+    if (currentSymbol && !isNaN(+currentSymbol)) {
       setAction(value)
     }
   }

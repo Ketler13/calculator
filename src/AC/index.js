@@ -1,6 +1,6 @@
 import {
          SET_DIGIT, SET_ACTION, SET_DOT, DELETE_LAST_SYMBOL, DELETE_RESULT,
-         EQUAL, SET_FUNC, CALCULATE_FUNC
+         EQUAL, SET_FUNC, CALCULATE_FUNC, CHANGE_SIGN
        } from '../constants'
 
 export function setDigit(value) {
@@ -30,6 +30,12 @@ export function setDot(value) {
       value,
       type: 'digit'
     }
+  }
+}
+
+export function changeSign() {
+  return {
+    type: CHANGE_SIGN
   }
 }
 

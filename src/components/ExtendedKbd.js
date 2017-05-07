@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setFunc, calculateFunc} from '../AC'
+import {setFunc, calculateFunc, changeSign} from '../AC'
 import Func from './buttons/extended/Func'
 import Checkbox from './buttons/extended/Checkbox'
 import BracketOpen from './buttons/extended/BracketOpen'
 import BracketClose from './buttons/extended/BracketClose'
 import Pi from './buttons/extended/Pi'
+import PlusMinus from './buttons/extended/PlusMinus'
 
 class ExtendedKbd extends Component  {
   static propTypes = {
@@ -34,6 +35,7 @@ class ExtendedKbd extends Component  {
       width: '50%',
       minWidth: '250px',
     }
+    const {changeSign, currentSymbol} = this.props
     return (
       <div style = {style}>
         <Checkbox />
@@ -47,8 +49,8 @@ class ExtendedKbd extends Component  {
         <Func label = 'ln' funcType = 'ln'/>
         <Func label = {'x\xB2'} funcType = 'sqr'/>
         <Func label = {'x\xB3'} funcType = 'cube'/>
-        <Func label = {'x\u207F'} funcType = 'pow'/>
         <Func label = {'10\u207F'} funcType = 'tenPow'/>
+        <PlusMinus changeSign = {changeSign} currentSymbol = {currentSymbol}/>
         <Func label = 'n!' funcType = 'factorial'/>
         <Pi />
         <BracketOpen />
@@ -64,4 +66,4 @@ export default connect(store => {
     currentSymbol: store.actions.currentSymbol,
     expression: store.actions.expression
   }
-}, {setFunc, calculateFunc})(ExtendedKbd)
+}, {setFunc, calculateFunc, changeSign})(ExtendedKbd)
