@@ -44,12 +44,12 @@ class ExtendedKbd extends Component  {
     }
     const {
            changeSign, currentSymbol, trigonometricScale, setDigit,
-           changeTrigonometricScale, setBracket
+           changeTrigonometricScale, setBracket, expression, cours
           } = this.props
 
     return (
       <div style = {style}>
-        <Currency />
+        <Currency cours = {cours} expression = {expression} calc = {setDigit}/>
         <Checkbox changeScale = {changeTrigonometricScale}/>
         <Trigonometric label = 'sin' funcType = 'sin' scale = {trigonometricScale}/>
         <Trigonometric label = 'cos' funcType = 'cos' scale = {trigonometricScale}/>
@@ -76,7 +76,7 @@ class ExtendedKbd extends Component  {
 export default connect(store => {
   const {currentSymbol, expression, trigonometricScale} = store.actions
   return {
-    currentSymbol, expression, trigonometricScale
+    currentSymbol, expression, trigonometricScale, cours: store.currency.cours
   }
 },
 {

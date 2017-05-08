@@ -10,7 +10,9 @@ export default store => next => action => {
   .then(response => {
     let cours
     response.data.forEach(elem => {
-      if (elem.ccy === 'USD' && elem.base_ccy === 'UAH') cours = elem.sale
+      if (elem.ccy === 'USD' && elem.base_ccy === 'UAH') {
+        cours = elem.sale.slice(0, 5)
+      }
     })
     next({type: GET_COURS + SUCCESS, payload: {cours}})
   })

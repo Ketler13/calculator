@@ -11,7 +11,6 @@ import {
 const defaultState = {
   currentSymbol: null,
   currentType: null,
-  cours: null,
   latestNumberContainsDot: false,
   trigonometricScale: 'deg',
   keyPressed: null,
@@ -120,18 +119,6 @@ export default (state = defaultState, action) => {
           result: action.result,
           expression: [`${action.result}`]
         }
-
-      case GET_COURS + SUCCESS:
-        return {
-          ...state,
-          cours: payload.cours
-        }
-
-      case GET_COURS + FAIL:
-        return {
-          ...state,
-          cours: payload.cours
-        }
   }
-  return defaultState
+  return state
 }

@@ -88,6 +88,12 @@ export const functions = {
   },
   tenPow(x) {
     return Math.pow(10, x)
+  },
+  toUSD(value) {
+    return eval(value)
+  },
+  toUAH(value) {
+    return eval(value)
   }
 }
 

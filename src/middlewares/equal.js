@@ -4,7 +4,7 @@ import { fact, functions } from '../helpers'
 export default store => next => action => {
   const {
          sin, sind, cos, cosd, tan, tand, ctg, ctgd, sqrt, revDiv, log, ln,
-         cube, sqr, pow, tenPow
+         cube, sqr, pow, tenPow, toUSD, toUAH
         } = functions
   const factorial = fact
   if (action.type !== EQUAL && action.type !== CALCULATE_FUNC) return next(action)
