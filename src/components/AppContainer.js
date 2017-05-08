@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import {connect} from 'react-redux'
-import {addKeyHandler} from '../AC'
+import {addKeyHandler, getWindowWidth} from '../AC'
 import Paper from 'material-ui/Paper'
 import AppBar from 'material-ui/AppBar'
 import Screen from './Screen'
@@ -12,11 +12,13 @@ class AppContainer extends Component {
 
   componentDidMount() {
     this.props.addKeyHandler()
+    this.props.getWindowWidth()
   }
 
   render() {
+    console.log(this.props.width);
     const style = {
-      maxWidth: '500px',
+      width: (this.props.width > 762) ? '500px' : '100%',
       margin: '0 auto',
     }
 
@@ -30,4 +32,8 @@ class AppContainer extends Component {
   }
 }
 
-export default connect(null, {addKeyHandler})(AppContainer)
+export default connect(store => {
+  return {
+    width: store.user.width
+  }
+}, {addKeyHandler, getWindowWidth})(AppContainer)

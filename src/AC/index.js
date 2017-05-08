@@ -1,7 +1,8 @@
 import {
          SET_DIGIT, SET_ACTION, SET_DOT, DELETE_LAST_SYMBOL, DELETE_RESULT,
          EQUAL, SET_FUNC, CALCULATE_FUNC, CHANGE_SIGN, CHANGE_TRIGONOMETRIC_SCALE,
-         OPEN_BRACKET, CLOSE_BRACKET, SET_BRACKET, ADD_KEY_HANDLER, GET_COURS
+         OPEN_BRACKET, CLOSE_BRACKET, SET_BRACKET, ADD_KEY_HANDLER, GET_COURS,
+         GET_WINDOW_WIDTH
        } from '../constants'
 
 export function setDigit(value) {
@@ -115,5 +116,11 @@ export function addKeyHandler() {
 export function getCours() {
   return {
     type: GET_COURS
+  }
+}
+
+export function getWindowWidth() {
+  return {
+    type: GET_WINDOW_WIDTH
   }
 }

@@ -39,8 +39,9 @@ class ExtendedKbd extends Component  {
 
   render() {
     const style = {
-      width: '50%',
+      width: (this.props.width > 762) ? '50%' : '100%',
       minWidth: '250px',
+      order: (this.props.width > 762) ? '1' : '2',
     }
     const {
            changeSign, currentSymbol, trigonometricScale, setDigit,
@@ -76,7 +77,8 @@ class ExtendedKbd extends Component  {
 export default connect(store => {
   const {currentSymbol, expression, trigonometricScale} = store.actions
   return {
-    currentSymbol, expression, trigonometricScale, cours: store.currency.cours
+    currentSymbol, expression, trigonometricScale, cours: store.currency.cours,
+    width: store.user.width
   }
 },
 {

@@ -10,8 +10,6 @@ const Convert = ({label, funcType, cours}, {currentSymbol, expression, setFunc, 
         const value = +expression[0]
         const calculatedValue = label === 'UAH' ? (value * cours) : (value / cours)
         calculateFunc(funcType, [`${calculatedValue}`])
-      } else {
-        setFunc(funcType)
       }
     }
   }

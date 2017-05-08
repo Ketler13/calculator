@@ -34,8 +34,9 @@ class StandardKbd  extends Component {
 
   render() {
     const style = {
-      width: '50%',
+      width: (this.props.width > 762) ? '50%' : '100%',
       minWidth: '250px',
+      order: (this.props.width > 762) ? '2' : '1',
     }
 
     const {
@@ -85,7 +86,8 @@ class StandardKbd  extends Component {
 export default connect(store => {
   const { currentSymbol, result, latestNumberContainsDot, expression, keyPressed } = store.actions
   return {
-    currentSymbol, result, latestNumberContainsDot, expression, keyPressed
+    currentSymbol, result, latestNumberContainsDot, expression, keyPressed,
+    width: store.user.width
   }
 },
 {

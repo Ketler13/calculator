@@ -20,6 +20,7 @@ export default store => next => action => {
   if (action.type === CALCULATE_FUNC) {
     try {
       const {func, value} = action.payload
+      console.log(`${func}(${value})`);
       const result = eval(`${func}(${value})`)
       next({...action, type: EQUAL + '_SUCCESS', result})
     } catch (error) {

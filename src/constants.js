@@ -1,6 +1,8 @@
 export const ADD_KEY_HANDLER = 'ADD_KEY_HANDLER'
 export const KEY_PRESSED = 'KEY_PRESSED'
 
+export const GET_WINDOW_WIDTH = 'GET_WINDOW_WIDTH'
+
 export const SET_DIGIT = 'SET_DIGIT'
 export const SET_ACTION = 'SET_ACTION'
 export const SET_DOT = 'SET_DOT'
