@@ -21,5 +21,9 @@ export const SUBTRACT_FROM_MEMORY = 'SUBTRACT_FROM_MEMORY'
 export const GET_FROM_MEMORY = 'GET_FROM_MEMORY'
 export const CLEAR_MEMORY = 'CLEAR_MEMORY'
 
+export const GET_COURS = 'GET_COURS'
+export const SUCCESS = '_SUCCESS'
+export const FAIL = '_FAIL'
+
 export const CALCULATE_FUNC = 'CALCULATE_FUNC'
 export const EQUAL = 'EQUAL'

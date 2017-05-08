@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {
          setFunc, calculateFunc, changeSign, changeTrigonometricScale, setDigit,
-         setBracket
+         setBracket, getCours
        } from '../AC'
 import Func from './buttons/extended/Func'
 import Trigonometric from './buttons/extended/Trigonometric'
@@ -12,6 +12,7 @@ import Bracket from './buttons/extended/Bracket'
 import BracketClose from './buttons/extended/BracketClose'
 import Pi from './buttons/extended/Pi'
 import PlusMinus from './buttons/extended/PlusMinus'
+import Currency from './Currency'
 
 class ExtendedKbd extends Component  {
   static propTypes = {
@@ -32,6 +33,10 @@ class ExtendedKbd extends Component  {
     }
   }
 
+  componentDidMount() {
+    this.props.getCours()
+  }
+
   render() {
     const style = {
       width: '50%',
@@ -44,6 +49,7 @@ class ExtendedKbd extends Component  {
 
     return (
       <div style = {style}>
+        <Currency />
         <Checkbox changeScale = {changeTrigonometricScale}/>
         <Trigonometric label = 'sin' funcType = 'sin' scale = {trigonometricScale}/>
         <Trigonometric label = 'cos' funcType = 'cos' scale = {trigonometricScale}/>
@@ -75,5 +81,5 @@ export default connect(store => {
 },
 {
   setFunc, calculateFunc, changeSign, changeTrigonometricScale, setDigit,
-  setBracket
+  setBracket, getCours
 })(ExtendedKbd)

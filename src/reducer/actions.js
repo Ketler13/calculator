@@ -5,12 +5,13 @@ import {
 import {
          SET_DIGIT, SET_ACTION, DELETE_LAST_SYMBOL, DELETE_RESULT, EQUAL,
          SET_DOT, SET_FUNC, CHANGE_SIGN, CHANGE_TRIGONOMETRIC_SCALE, SET_BRACKET,
-         KEY_PRESSED
+         KEY_PRESSED, GET_COURS, SUCCESS, FAIL
        } from '../constants'
 
 const defaultState = {
   currentSymbol: null,
   currentType: null,
+  cours: null,
   latestNumberContainsDot: false,
   trigonometricScale: 'deg',
   keyPressed: null,
@@ -118,6 +119,18 @@ export default (state = defaultState, action) => {
           ...defaultState,
           result: action.result,
           expression: [`${action.result}`]
+        }
+
+      case GET_COURS + SUCCESS:
+        return {
+          ...state,
+          cours: payload.cours
+        }
+
+      case GET_COURS + FAIL:
+        return {
+          ...state,
+          cours: payload.cours
         }
   }
   return defaultState
