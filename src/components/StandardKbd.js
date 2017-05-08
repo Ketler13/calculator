@@ -4,11 +4,18 @@ import { connect } from 'react-redux'
 import { setDigit, setAction, setDot, deleteLastSymbol, deleteResult,
          equal
        } from '../AC'
+import {
+         addToMemory, subtractFromMemory, getFromMemory, clearMemory
+       } from '../AC/memory'
 import Backspace from './buttons/standard/Backspace'
 import Digit from './buttons/standard/Digit'
 import Action from './buttons/standard/Action'
 import Dot from './buttons/standard/Dot'
 import Equal from './buttons/standard/Equal'
+import MemoryPlus from './buttons/standard/MemoryPlus'
+import MemoryMinus from './buttons/standard/MemoryMinus'
+import MemoryGet from './buttons/standard/MemoryGet'
+import MemoryClear from './buttons/standard/MemoryClear'
 
 class StandardKbd  extends Component {
   static propTypes = {
@@ -33,11 +40,16 @@ class StandardKbd  extends Component {
 
     const {
             currentSymbol, setDigit, setDot, setAction, deleteLastSymbol,
-            deleteResult, equal, result, latestNumberContainsDot , expression
+            deleteResult, equal, result, latestNumberContainsDot, expression,
+            addToMemory, subtractFromMemory, getFromMemory, clearMemory
           } = this.props
 
     return (
       <div style = {style}>
+        <MemoryPlus result = {result} action = {addToMemory} expression = {expression}/>
+        <MemoryMinus result = {result} action = {subtractFromMemory} expression = {expression}/>
+        <MemoryGet currentSymbol = {currentSymbol} action = {getFromMemory}/>
+        <MemoryClear action = {clearMemory}/>
         <Backspace
           result = {result}
           expression = {expression}
@@ -75,4 +87,8 @@ export default connect(store => {
   return {
     currentSymbol, result, latestNumberContainsDot, expression, keyPressed
   }
-}, {setDigit, setAction, setDot, deleteLastSymbol, deleteResult, equal})(StandardKbd)
+},
+{
+  setDigit, setAction, setDot, deleteLastSymbol, deleteResult, equal,
+  addToMemory, subtractFromMemory, getFromMemory, clearMemory
+})(StandardKbd)
